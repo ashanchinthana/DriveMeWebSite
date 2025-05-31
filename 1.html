@@ -1,0 +1,2023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drive Me - Download Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #1a3a7e;
+            --primary-light: #2c51a3;
+            --primary-dark: #112856;
+            --secondary: #2196f3;
+            --secondary-light: #64b5f6;
+            --accent: #ff9800;
+            --dark: #212121;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --border: #dee2e6;
+            --shadow: rgba(0, 0, 0, 0.08);
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 40px;
+            --border-radius: 6px;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+        
+        section {
+            padding: var(--spacing-xl) 0;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--primary);
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        
+        p {
+            margin-bottom: var(--spacing-md);
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px var(--shadow);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        header.scrolled {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--spacing-md) 0;
+            transition: var(--transition);
+        }
+        
+        header.scrolled .header-content {
+            padding: 10px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 60px;
+            margin-right: var(--spacing-md);
+            transition: var(--transition);
+        }
+        
+        header.scrolled .logo img {
+            height: 50px;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.8rem;
+            margin-bottom: 2px;
+            transition: var(--transition);
+        }
+        
+        header.scrolled .logo-text h1 {
+            font-size: 1.6rem;
+        }
+        
+        .logo-text p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 0;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: var(--spacing-xl);
+        }
+        
+        nav ul li a {
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+            padding: 6px 0;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        nav ul li a:hover:after, 
+        nav ul li a.active:after {
+            width: 100%;
+        }
+        
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding-top: 140px;
+            padding-bottom: 80px;
+            position: relative;
+            background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgZmlsbD0iI2JiZGVmYiIgZmlsbC1vcGFjaXR5PSIwLjIiPgogICAgICAgICAgICA8cGF0aCBkPSJNMzYgMzRjMCAxLjEtLjkgMi0yIDJzLTItLjktMi0yIC45LTIgMi0yIDIgLjkgMiAyem0wLTE3YzAgMS4xLS45IDItMiAycy0yLS45LTItMiAuOS0yIDItMiAyIC45IDIgMnptMTcgMTdjMCAxLjEtLjkgMi0yIDJzLTItLjktMi0yIC45LTIgMi0yIDIgLjkgMiAyem0wLTE3YzAgMS4xLS45IDItMiAycy0yLS45LTItMiAuOS0yIDItMiAyIC45IDIgMnptLTE3IDE3YzAgMS4xLS45IDItMiAycy0yLS45LTItMiAuOS0yIDItMiAyIC45IDIgMnptMC0xN2MwIDEuMS0uOSAyLTIgMnMtMi0uOS0yLTIgLjktMiAyLTIgMiAuOSAyIDJ6bTE3IDE3YzAgMS4xLS45IDItMiAycy0yLS45LTItMiAuOS0yIDItMiAyIC45IDIgMnptMC0xN2MwIDEuMS0uOSAyLTIgMnMtMi0uOS0yLTIgLjktMiAyLTIgMiAuOSAyIDJ6Ii8+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4=');
+            opacity: 0.5;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-text {
+            flex: 1;
+            padding-right: var(--spacing-xl);
+        }
+        
+        .hero-text h2 {
+            font-size: 2.6rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--primary);
+            line-height: 1.2;
+            position: relative;
+        }
+        
+        .hero-text h2:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+        
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 28px;
+            font-weight: 600;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            outline: none;
+            text-align: center;
+            font-size: 1rem;
+        }
+        
+        .btn i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 8px rgba(27, 58, 126, 0.2);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(27, 58, 126, 0.3);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+            box-shadow: 0 4px 8px rgba(33, 150, 243, 0.2);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--secondary-light);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(33, 150, 243, 0.3);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 10px 26px;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: var(--transition);
+        }
+        
+        .hero-image img:hover {
+            transform: perspective(1000px) rotateY(0);
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            background-color: white;
+            box-shadow: 0 5px 15px var(--shadow);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-xl);
+            margin-top: -50px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: var(--spacing-md);
+        }
+        
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--spacing-sm);
+            position: relative;
+            display: block;
+            line-height: 1.1;
+        }
+        
+        .stat-icon {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: var(--gray);
+            font-weight: 500;
+        }
+        
+        /* Section Titles */
+        .section-title {
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+            position: relative;
+            padding-bottom: var(--spacing-md);
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--primary);
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 1.5px;
+        }
+        
+        /* Features Section */
+        .features {
+            background-color: var(--light);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: var(--spacing-xl);
+            box-shadow: 0 5px 15px var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            top: 0;
+        }
+        
+        .feature-card:hover {
+            top: -10px;
+            box-shadow: 0 15px 30px var(--shadow);
+        }
+        
+        .feature-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+        
+        .feature-card:hover:before {
+            transform: scaleX(1);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            margin-bottom: var(--spacing-md);
+            background-color: rgba(33, 150, 243, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .feature-icon i {
+            font-size: 28px;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .feature-card:hover .feature-icon {
+            background-color: var(--primary);
+        }
+        
+        .feature-card:hover .feature-icon i {
+            color: white;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--primary);
+        }
+        
+        .feature-card p {
+            color: var(--gray);
+            margin-bottom: var(--spacing-lg);
+            flex-grow: 1;
+        }
+        
+        .feature-link {
+            color: var(--secondary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            margin-top: auto;
+            transition: var(--transition);
+        }
+        
+        .feature-link i {
+            margin-left: 6px;
+            transition: var(--transition);
+        }
+        
+        .feature-link:hover {
+            color: var(--primary);
+        }
+        
+        .feature-link:hover i {
+            transform: translateX(4px);
+        }
+        
+        /* Download Section */
+        .download {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+            border-radius: var(--border-radius);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(27, 58, 126, 0.2);
+            margin: var(--spacing-xl) 0;
+        }
+        
+        .download-container {
+            padding: var(--spacing-xl) var(--spacing-lg);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .download-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgZmlsbD0iI2ZmZmZmZiIgZmlsbC1vcGFjaXR5PSIwLjA1Ij4KICAgICAgICAgICAgPHBhdGggZD0iTTM2IDM0YzAgMS4xLS45IDItMiAycy0yLS45LTItMiAuOS0yIDItMiAyIC45IDIgMnptMC0xN2MwIDEuMS0uOSAyLTIgMnMtMi0uOS0yLTIgLjktMiAyLTIgMiAuOSAyIDJ6bTE3IDE3YzAgMS4xLS45IDItMiAycy0yLS45LTItMiAuOS0yIDItMiAyIC45IDIgMnptMC0xN2MwIDEuMS0uOSAyLTIgMnMtMi0uOS0yLTIgLjktMiAyLTIgMiAuOSAyIDJ6bS0xNyAxN2MwIDEuMS0uOSAyLTIgMnMtMi0uOS0yLTIgLjktMiAyLTIgMiAuOSAyIDJ6bTAtMTdjMCAxLjEtLjkgMi0yIDJzLTItLjktMi0yIC45LTIgMi0yIDIgLjkgMiAyem0xNyAxN2MwIDEuMS0uOSAyLTIgMnMtMi0uOS0yLTIgLjktMiAyLTIgMiAuOSAyIDJ6bTAtMTdjMCAxLjEtLjkgMi0yIDJzLTItLjktMi0yIC45LTIgMi0yIDIgLjkgMiAyeiIvPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+');
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .download-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .download-content h2 {
+            color: white;
+            font-size: 2.2rem;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .download-content p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .download-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+        }
+        
+        .download-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: var(--spacing-xl);
+            width: 320px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            position: relative;
+            top: 0;
+        }
+        
+        .download-card:hover {
+            top: -10px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .download-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--spacing-md);
+            background-color: rgba(33, 150, 243, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .download-icon i {
+            font-size: 36px;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .download-card:hover .download-icon {
+            background-color: var(--primary);
+        }
+        
+        .download-card:hover .download-icon i {
+            color: white;
+        }
+        
+        .download-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .download-card p {
+            color: var(--gray);
+            margin-bottom: var(--spacing-xl);
+            font-size: 0.95rem;
+        }
+        
+        .download-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            background-color: var(--light);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-right: 6px;
+            margin-bottom: 10px;
+        }
+        
+        .download-badge i {
+            margin-right: 5px;
+            font-size: 0.9rem;
+        }
+        
+        /* Requirements Section */
+        .requirements {
+            background-color: var(--light);
+        }
+        
+        .tabs {
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .tab-button {
+            background: none;
+            border: none;
+            padding: var(--spacing-md) var(--spacing-xl);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--gray);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab-button.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+        
+        .tab-content {
+            display: none;
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: var(--spacing-xl);
+            box-shadow: 0 5px 15px var(--shadow);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .requirement-list {
+            list-style-type: none;
+        }
+        
+        .requirement-list li {
+            margin: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            color: var(--gray);
+        }
+        
+        .requirement-list li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+        
+        .requirement-list li strong {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+        
+        /* Testimonial Section */
+        .testimonials {
+            background-color: white;
+        }
+        
+        .testimonial-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+        
+        .testimonial-slider {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .testimonial-slide {
+            flex: 0 0 100%;
+            padding: var(--spacing-xl);
+            background-color: white;
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: var(--spacing-md);
+            border: 3px solid var(--light-gray);
+        }
+        
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .testimonial-meta h4 {
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+        
+        .testimonial-meta p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        .testimonial-rating {
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .testimonial-rating i {
+            color: #ffc107;
+            margin-right: 2px;
+        }
+        
+        .testimonial-quote {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--gray);
+            line-height: 1.6;
+            position: relative;
+            padding-left: var(--spacing-lg);
+            border-left: 3px solid var(--light-gray);
+        }
+        
+        .testimonial-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: var(--spacing-lg);
+            gap: var(--spacing-md);
+        }
+        
+        .testimonial-arrow {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 3px 10px var(--shadow);
+        }
+        
+        .testimonial-arrow:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .testimonial-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: var(--spacing-md);
+            gap: 8px;
+        }
+        
+        .testimonial-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .testimonial-dot.active {
+            background-color: var(--primary);
+            transform: scale(1.2);
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            background-color: var(--light);
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background-color: white;
+            border-radius: var(--border-radius);
+            margin-bottom: var(--spacing-md);
+            box-shadow: 0 3px 10px var(--shadow);
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: var(--spacing-md) var(--spacing-lg);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: var(--transition);
+        }
+        
+        .faq-question:hover {
+            background-color: rgba(33, 150, 243, 0.05);
+        }
+        
+        .faq-question i {
+            transition: var(--transition);
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+        
+        .faq-answer-content {
+            padding: 0 var(--spacing-lg) var(--spacing-lg);
+            color: var(--gray);
+        }
+        
+        /* Newsletter Section */
+        .newsletter {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: var(--spacing-xl);
+            box-shadow: 0 5px 15px var(--shadow);
+            margin: var(--spacing-xl) 0;
+        }
+        
+        .newsletter-container {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xl);
+        }
+        
+        .newsletter-content {
+            flex: 1;
+        }
+        
+        .newsletter-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .newsletter-content p {
+            color: var(--gray);
+            margin-bottom: 0;
+        }
+        
+        .newsletter-form {
+            flex: 1;
+            display: flex;
+            position: relative;
+        }
+        
+        .newsletter-input {
+            width: 100%;
+            padding: 12px var(--spacing-lg);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+        
+        .newsletter-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 58, 126, 0.1);
+        }
+        
+        .newsletter-btn {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            bottom: 5px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 0 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .newsletter-btn:hover {
+            background-color: var(--primary-light);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: var(--spacing-xl) 0 var(--spacing-md);
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .footer-column h4 {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: var(--spacing-lg);
+            position: relative;
+            padding-bottom: var(--spacing-sm);
+        }
+        
+        .footer-column h4:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+        
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.6;
+        }
+        
+        .footer-links ul {
+            list-style-type: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-links ul li a i {
+            margin-right: 8px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .footer-links ul li a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .footer-contact {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .footer-contact p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .footer-contact p i {
+            margin-right: 10px;
+            color: var(--secondary);
+            font-size: 1.1rem;
+            margin-top: 3px;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-md);
+        }
+        
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-icon:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--spacing-md);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 99;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-5px);
+        }
+        
+        /* Progress Indicator for Download Buttons */
+        .progress-wrapper {
+            height: 4px;
+            background-color: var(--light-gray);
+            border-radius: 2px;
+            margin-top: var(--spacing-md);
+            overflow: hidden;
+            display: none;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            transition: width 0.5s ease;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-top: var(--spacing-xl);
+            }
+            
+            .hero-text h2:after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .newsletter-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .newsletter-btn {
+                position: relative;
+                width: 100%;
+                right: 0;
+                top: 0;
+                margin-top: var(--spacing-sm);
+                padding: 12px;
+            }
+            
+            .newsletter-input {
+                text-align: center;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .feature-card {
+                text-align: center;
+                align-items: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            :root {
+                --spacing-xl: 30px;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                padding: var(--spacing-md);
+                box-shadow: 0 5px 15px var(--shadow);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+                z-index: 100;
+            }
+            
+            nav.active {
+                transform: translateY(0);
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+                text-align: center;
+            }
+            
+            .section {
+                padding: var(--spacing-xl) 0;
+            }
+            
+            .hero {
+                padding-top: 120px;
+            }
+            
+            .hero-text h2 {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.95rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+                justify-content: flex-start;
+            }
+            
+            .tab-button {
+                padding: var(--spacing-sm) var(--spacing-md);
+                font-size: 0.95rem;
+            }
+            
+            .download-card {
+                width: 100%;
+            }
+            
+            .feature-icon {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .feature-icon i {
+                font-size: 24px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 var(--spacing-md);
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-column h4 {
+                font-size: 1.2rem;
+            }
+            
+            .download-card {
+                padding: var(--spacing-lg);
+            }
+            
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-content">
+            <div class="logo">
+                <img src="DRIVE.png" alt="Drive Me Logo">
+                <div class="logo-text">
+                    <h1>Drive Me</h1>
+                    <p>Online Fine Payment System</p>
+                </div>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#features" class="nav-link">Features</a></li>
+                    <li><a href="#download" class="nav-link">Download</a></li>
+                    <li><a href="#requirements" class="nav-link">Requirements</a></li>
+                    <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                    <li><a href="#faq" class="nav-link">FAQ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h2>Streamline Traffic Fine Management</h2>
+                <p>A comprehensive digital traffic fine management system for Sri Lanka featuring mobile apps for drivers and police officers, a web-based admin portal, and an AI-powered analytics module that predicts traffic violation hotspots.</p>
+                <div class="hero-buttons">
+                    <a href="#download" class="btn btn-primary">
+                        <i class="fas fa-download"></i> Download Now
+                    </a>
+                    <a href="#features" class="btn btn-secondary">
+                        <i class="fas fa-info-circle"></i> Learn More
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="/kumara.jpg" alt="Drive Me App Interface">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Stats Section -->
+    <section class="stats-section container">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <i class="fas fa-users stat-icon"></i>
+                <span class="stat-value" data-value="10">10K+</span>
+                <span class="stat-label">Active Users</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-clock stat-icon"></i>
+                <span class="stat-value" data-value="65">65%</span>
+                <span class="stat-label">Time Saved</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-tasks stat-icon"></i>
+                <span class="stat-value" data-value="98">98%</span>
+                <span class="stat-label">User Satisfaction</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-money-bill-wave stat-icon"></i>
+                <span class="stat-value" data-value="25">25M+</span>
+                <span class="stat-label">Fines Processed</span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features section" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Key Features</h2>
+                <p>Discover the powerful features that make Drive Me the leading traffic fine management solution</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile App for Drivers</h3>
+                    <p>View and pay traffic fines securely from your smartphone. Access your payment history and digital receipts anytime, anywhere.</p>
+                    <a href="#" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3>Police Administration Portal</h3>
+                    <p>Manage traffic fines, track payments, and generate detailed reports through an intuitive web-based interface.</p>
+                    <a href="#" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI-Powered Analysis</h3>
+                    <p>Predict traffic violation hotspots using machine learning algorithms to optimize resource allocation and enhance road safety.</p>
+                    <a href="#" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>Secure Payment Gateway</h3>
+                    <p>Process payments safely through multiple methods including credit cards, online banking, and mobile wallets.</p>
+                    <a href="#" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Advanced Analytics</h3>
+                    <p>Access comprehensive dashboards and reports to gain insights into traffic violations and payment patterns.</p>
+                    <a href="#" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>Automated Notifications</h3>
+                    <p>Receive timely alerts about pending fines, payment deadlines, and license information.</p>
+                    <a href="#" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Download Section -->
+    <div class="container" id="download">
+        <div class="download">
+            <div class="download-bg"></div>
+            <div class="download-container">
+                <div class="download-content">
+                    <h2>Download Drive Me Today</h2>
+                    <p>Choose the application that best suits your needs and experience the future of traffic fine management</p>
+                    <div class="download-options">
+                        <div class="download-card">
+                            <div class="download-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div>
+                                <span class="download-badge">
+                                    <i class="fab fa-android"></i> Android
+                                </span>
+                                <span class="download-badge">
+                                    <i class="fab fa-apple"></i> iOS
+                                </span>
+                            </div>
+                            <h3>Driver App</h3>
+                            <p>For citizens to view and pay traffic fines with ease. Access your complete violation history and manage your license information.</p>
+                            <a href="#" class="btn btn-primary download-btn" data-type="driver">
+                                <i class="fas fa-download"></i> Download Now
+                            </a>
+                            <div class="progress-wrapper">
+                                <div class="progress-bar"></div>
+                            </div>
+                        </div>
+                        <div class="download-card">
+                            <div class="download-icon">
+                                <i class="fas fa-tablet-alt"></i>
+                            </div>
+                            <div>
+                                <span class="download-badge">
+                                    <i class="fab fa-android"></i> Android
+                                </span>
+                            </div>
+                            <h3>Police App</h3>
+                            <p>For officers to manage traffic violations in the field. Issue digital tickets and access driver records instantly.</p>
+                            <a href="#" class="btn btn-primary download-btn" data-type="police">
+                                <i class="fas fa-download"></i> Download Now
+                            </a>
+                            <div class="progress-wrapper">
+                                <div class="progress-bar"></div>
+                            </div>
+                        </div>
+                        <div class="download-card">
+                            <div class="download-icon">
+                                <i class="fas fa-desktop"></i>
+                            </div>
+                            <div>
+                                <span class="download-badge">
+                                    <i class="fas fa-globe"></i> Web Portal
+                                </span>
+                            </div>
+                            <h3>Admin Portal</h3>
+                            <p>Web-based interface for comprehensive traffic fine management, reporting, and analytics.</p>
+                            <a href="#" class="btn btn-primary download-btn" data-type="admin">
+                                <i class="fas fa-sign-in-alt"></i> Access Portal
+                            </a>
+                            <div class="progress-wrapper">
+                                <div class="progress-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Requirements Section -->
+    <section class="requirements section" id="requirements">
+        <div class="container">
+            <div class="section-title">
+                <h2>System Requirements</h2>
+                <p>Check if your device meets the requirements to use our applications</p>
+            </div>
+            <div class="tabs">
+                <button class="tab-button active" data-tab="driver-app">Driver App</button>
+                <button class="tab-button" data-tab="police-app">Police App</button>
+                <button class="tab-button" data-tab="admin-portal">Admin Portal</button>
+            </div>
+            
+            <div class="tab-content active" id="driver-app">
+                <ul class="requirement-list">
+                    <li><strong>Device:</strong> Android 8.0+ or iOS 12.0+</li>
+                    <li><strong>Memory:</strong> Minimum 2GB RAM</li>
+                    <li><strong>Storage:</strong> 100MB available space</li>
+                    <li><strong>Connectivity:</strong> Active internet connection (Wi-Fi or mobile data)</li>
+                    <li><strong>Location:</strong> Location services enabled</li>
+                    <li><strong>Camera:</strong> Access for document scanning (optional)</li>
+                </ul>
+            </div>
+            
+            <div class="tab-content" id="police-app">
+                <ul class="requirement-list">
+                    <li><strong>Device:</strong> Android 9.0 or higher</li>
+                    <li><strong>Memory:</strong> Minimum 3GB RAM</li>
+                    <li><strong>Storage:</strong> 250MB available space</li>
+                    <li><strong>Connectivity:</strong> Active internet connection (preferably 4G/LTE)</li>
+                    <li><strong>GPS:</strong> High-accuracy GPS capability</li>
+                    <li><strong>Camera:</strong> Access for documentation</li>
+                    <li><strong>Recommended:</strong> Tablet device for optimal experience</li>
+                </ul>
+            </div>
+            
+            <div class="tab-content" id="admin-portal">
+                <ul class="requirement-list">
+                    <li><strong>Browser:</strong> Chrome 80+, Firefox 75+, Safari 13+, Edge 85+</li>
+                    <li><strong>Resolution:</strong> 1280x720 or higher</li>
+                    <li><strong>Connectivity:</strong> Stable internet connection</li>
+                    <li><strong>JavaScript:</strong> Enabled</li>
+                    <li><strong>Cookies:</strong> Enabled</li>
+                    <li><strong>Additional:</strong> PDF viewer for reports</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonial Section -->
+    <section class="testimonials section" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Users Say</h2>
+                <p>Hear from our satisfied users about their experience with Drive Me</p>
+            </div>
+            <div class="testimonial-container">
+                <div class="testimonial-wrapper">
+                    <div class="testimonial-slider" id="testimonialSlider">
+                        <div class="testimonial-slide">
+                            <div class="testimonial-header">
+                                <div class="testimonial-avatar">
+                                    <img src="/dinesh.jpg" alt="Dinesh Perera">
+                                </div>
+                                <div class="testimonial-meta">
+                                    <h4>Dinesh Perera</h4>
+                                    <p>Driver, Colombo</p>
+                                </div>
+                            </div>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="testimonial-quote">
+                                "The Drive Me app has made paying traffic fines so much more convenient. No more waiting in long queues at the post office! The interface is intuitive and the payment process is seamless."
+                            </div>
+                        </div>
+                        <div class="testimonial-slide">
+                            <div class="testimonial-header">
+                                <div class="testimonial-avatar">
+                                    <img src="/kumara.jpg" alt="Sergeant Kumara">
+                                </div>
+                                <div class="testimonial-meta">
+                                    <h4>Sergeant Kumara</h4>
+                                    <p>Traffic Police, Kandy</p>
+                                </div>
+                            </div>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="testimonial-quote">
+                                "As a traffic officer, the police portal has significantly reduced my administrative workload. The hotspot prediction feature helps us deploy resources more effectively. This system is transforming how we manage traffic enforcement."
+                            </div>
+                        </div>
+                        <div class="testimonial-slide">
+                            <div class="testimonial-header">
+                                <div class="testimonial-avatar">
+                                    <img src="/niroshi.jpg" alt="Niroshi Silva">
+                                </div>
+                                <div class="testimonial-meta">
+                                    <h4>Niroshi Silva</h4>
+                                    <p>Department Administrator</p>
+                                </div>
+                            </div>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <div class="testimonial-quote">
+                                "The analytics dashboard provides valuable insights into traffic violation patterns, helping us implement targeted safety measures. The data-driven approach has revolutionized our strategic planning processes."
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-controls">
+                    <button class="testimonial-arrow" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="testimonial-arrow" id="nextBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="testimonial-dots" id="testimonialDots">
+                    <span class="testimonial-dot active" data-slide="0"></span>
+                    <span class="testimonial-dot" data-slide="1"></span>
+                    <span class="testimonial-dot" data-slide="2"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section class="faq-section section" id="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions about Drive Me</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I pay a traffic fine using the app?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            To pay a traffic fine, simply log into the Driver App, navigate to "My Fines" section, select the fine you wish to pay, and choose your preferred payment method. The app supports credit/debit cards, online banking, and mobile wallets. After successful payment, a digital receipt will be generated and stored in the app for future reference.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Is my payment information secure?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes, Drive Me uses bank-grade encryption to protect all payment information. We do not store any credit card details on our servers. All transactions are processed through PCI-DSS compliant payment gateways with additional security measures like tokenization and multi-factor authentication.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How can I retrieve my license after paying a fine?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            After paying your fine through the app, you can visit any police station with your digital receipt and identification to retrieve your license. In some areas, we've implemented a digital license system where you'll receive a digital permit valid until you can collect your physical license.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What if I don't have a smartphone?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            While the app offers the most convenient experience, you can also access your fines and make payments through our web portal using any internet-connected device. Additionally, the traditional payment methods at post offices remain available for those who prefer them.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Is the app available in multiple languages?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes, Drive Me is available in Sinhala, Tamil, and English to serve all citizens of Sri Lanka. You can change your language preference in the app settings at any time.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Newsletter Section -->
+    <div class="container">
+        <div class="newsletter">
+            <div class="newsletter-container">
+                <div class="newsletter-content">
+                    <h3>Stay Updated</h3>
+                    <p>Subscribe to our newsletter to receive the latest updates, new features, and tips for using Drive Me effectively.</p>
+                </div>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                    <button type="submit" class="newsletter-btn">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column footer-about">
+                    <h4>About Drive Me</h4>
+                    <p>Drive Me is a comprehensive digital traffic fine management system for Sri Lanka, designed to streamline the process for drivers and law enforcement alike.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-column footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#features"><i class="fas fa-chevron-right"></i> Features</a></li>
+                        <li><a href="#download"><i class="fas fa-chevron-right"></i> Download</a></li>
+                        <li><a href="#requirements"><i class="fas fa-chevron-right"></i> Requirements</a></li>
+                        <li><a href="#testimonials"><i class="fas fa-chevron-right"></i> Testimonials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Help Center</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> <span>Police Headquarters, Colombo 01, Sri Lanka</span></p>
+                    <p><i class="fas fa-phone-alt"></i> <span>+94 11 2421111</span></p>
+                    <p><i class="fas fa-envelope"></i> <span>support@driveme.gov.lk</span></p>
+                    <p><i class="fas fa-clock"></i> <span>Mon - Fri: 8:30AM - 4:30PM</span></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Drive Me | Sri Lanka Police Department. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sticky Header
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Mobile Menu Toggle
+            const mobileToggle = document.getElementById('mobileToggle');
+            const mainNav = document.getElementById('mainNav');
+            
+            mobileToggle.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+                this.innerHTML = mainNav.classList.contains('active') ? 
+                    '<i class="fas fa-times"></i>' : 
+                    '<i class="fas fa-bars"></i>';
+            });
+            
+            // Smooth Scrolling
+            const navLinks = document.querySelectorAll('.nav-link, .btn[href^="#"]');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Close mobile menu if open
+                    mainNav.classList.remove('active');
+                    mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Active Navigation on Scroll
+            const sections = document.querySelectorAll('section, div.download');
+            
+            function setActiveNavItem() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (window.pageYOffset >= sectionTop - 100) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', setActiveNavItem);
+            
+            // Back to Top Button
+            const backToTop = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTop.classList.add('active');
+                } else {
+                    backToTop.classList.remove('active');
+                }
+            });
+            
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Tab Functionality
+            const tabButtons = document.querySelectorAll('.tab-button');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Hide all tab content
+                    document.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // Show related tab content
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Testimonial Slider
+            const testimonialSlider = document.getElementById('testimonialSlider');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const dots = document.querySelectorAll('.testimonial-dot');
+            let currentSlide = 0;
+            let slideWidth = 100; // Percentage
+            
+            function goToSlide(index) {
+                if (index < 0) {
+                    index = 2;
+                } else if (index > 2) {
+                    index = 0;
+                }
+                
+                currentSlide = index;
+                testimonialSlider.style.transform = `translateX(-${currentSlide * slideWidth}%)`;
+                
+                // Update dots
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentSlide);
+                });
+            }
+            
+            prevBtn.addEventListener('click', function() {
+                goToSlide(currentSlide - 1);
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                goToSlide(currentSlide + 1);
+            });
+            
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', function() {
+                    goToSlide(index);
+                });
+            });
+            
+            // Auto advance testimonials
+            let testimonialInterval = setInterval(function() {
+                goToSlide(currentSlide + 1);
+            }, 5000);
+            
+            // Pause auto-advance on hover
+            testimonialSlider.parentElement.addEventListener('mouseenter', function() {
+                clearInterval(testimonialInterval);
+            });
+            
+            testimonialSlider.parentElement.addEventListener('mouseleave', function() {
+                testimonialInterval = setInterval(function() {
+                    goToSlide(currentSlide + 1);
+                }, 5000);
+            });
+            
+            // FAQ Accordion
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const faqItem = this.parentElement;
+                    const isActive = faqItem.classList.contains('active');
+                    
+                    // Close all FAQ items
+                    document.querySelectorAll('.faq-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // If the clicked item wasn't already open, open it
+                    if (!isActive) {
+                        faqItem.classList.add('active');
+                    }
+                });
+            });
+            
+            // Download Button Interaction
+            const downloadButtons = document.querySelectorAll('.download-btn');
+            
+            downloadButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const type = this.getAttribute('data-type');
+                    const progressWrapper = this.nextElementSibling;
+                    const progressBar = progressWrapper.querySelector('.progress-bar');
+                    
+                    // Show progress bar
+                    progressWrapper.style.display = 'block';
+                    
+                    // Simulate download progress
+                    let progress = 0;
+                    const interval = setInterval(function() {
+                        progress += 1;
+                        progressBar.style.width = `${progress}%`;
+                        
+                        if (progress >= 100) {
+                            clearInterval(interval);
+                            
+                            // After completion, hide progress bar and show success message
+                            setTimeout(function() {
+                                progressWrapper.style.display = 'none';
+                                
+                                // Change button text temporarily
+                                const originalText = button.innerHTML;
+                                button.innerHTML = type === 'admin' ? 
+                                    '<i class="fas fa-check-circle"></i> Launching...' : 
+                                    '<i class="fas fa-check-circle"></i> Downloaded';
+                                
+                                // Reset button after 2 seconds
+                                setTimeout(function() {
+                                    button.innerHTML = originalText;
+                                }, 2000);
+                            }, 500);
+                        }
+                    }, 30);
+                });
+            });
+            
+            // Feature card animations
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.top = '-10px';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.top = '0';
+                });
+            });
+            
+            // Newsletter subscription
+            const newsletterForm = document.querySelector('.newsletter-form');
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const input = this.querySelector('.newsletter-input');
+                const email = input.value.trim();
+                
+                if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    // Simulate successful subscription
+                    input.value = '';
+                    alert('Thank you for subscribing to our newsletter!');
+                } else {
+                    alert('Please enter a valid email address.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
